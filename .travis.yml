@@ -9,4 +9,4 @@ go:
   - 1.13.x  
 
 script: 
-  - go get github.com/catcherwong/rl && go test    
+  - go get github.com/catcherwong/rl && go test -v
