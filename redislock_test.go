@@ -105,8 +105,6 @@ func TestRedisLock_UnLock2(t *testing.T) {
 		t.Error("result should be false")
 	}
 }
-	}
-}
 
 func TestRedisLock_UnLockWithId(t *testing.T) {
 
@@ -118,19 +116,23 @@ func TestRedisLock_UnLockWithId(t *testing.T) {
 
 	v, err := rl.LockWithId(key, "id", second)
 
+	if err != nil {
+		t.Error("lock should succeed")
+	}
+
 	if !v {
 		t.Error("result should be true")
 	}
 
-	v, err = rl.UnLock(key)
-	
+	v, _ = rl.UnLock(key)
+
 	if v {
 		t.Error("result should be false")
-	}	
+	}
 
-	v, err = rl.UnLockWithId(key, id, second)
-	
+	v, err = rl.UnLockWithId(key, id)
+
 	if !v {
 		t.Error("result should be true")
-	}	
+	}
 }

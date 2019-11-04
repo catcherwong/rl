@@ -138,7 +138,7 @@ func (rl RedisLock) UnLockWithId(key string, id string) (bool, error) {
 	if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end
 	`)
 
-	v, err := script.Run(client, []string{key}, id).Result()
+	v, err := script.Run(client, []string{key}, id).Int()
 
 	if err != nil {
 		return false, fmt.Errorf("redis del error %v", err)
